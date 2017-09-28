@@ -9,8 +9,6 @@
   "author": "Usman",
   "license": "ISC",
   "dependencies": {
-    "git-clone": "^0.1.0",
-    "node-cmd": "^3.0.0",
-    "nodegit": "^0.20.2"
+    "cli-progress": "^1.6.0"
   }
 }
