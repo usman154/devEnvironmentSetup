@@ -5,7 +5,6 @@
   "main": "app.js",
   "scripts": {
     "test": "node app"
-	"do" : " npm install node-cmd"
   },
   "author": "Usman",
   "license": "ISC",

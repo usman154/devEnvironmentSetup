@@ -1,8 +1,13 @@
 const exec = require('child_process').exec;
 const fsE = require('fs-extra');
-fsE.remove('ccadmin/baseApp', err => {
+fsE.remove('newMicroService/src/app/baseApp', err => {
                      if (err) return console.error(err)
                       else console.log('\nDeleted base project!');
-                     return;
+				  
+				  var ex = exec('cd newMicroService && gulp serve:dist');		
+ex.on('close', function(code){
+	console.log(`command closed with exit code ${code}`)
+});
+                    
                    });
-exec('cd ccadmin && gulp serve:dist')				   
+		   

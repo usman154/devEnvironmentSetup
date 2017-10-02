@@ -73,6 +73,11 @@ var url = "https://muhammad_usman_rana:hackman123@bitbucket.org/expertflow-ondem
                  console.log("\nDone with Package.JSON file");
                });
              });
+			 fs.readFile(path.join(__dirname, 'bower.json'),'utf8' , function(error, data){
+               fs.writeFile(path.join(__dirname, newMicroService+'/bower.json'), data, function(){
+                 console.log("\nDone with bower.JSON file");
+               });
+             });
              fs.mkdir(path.join(newMicroService,'src'), function(){
                fs.readFile(path.join(__dirname, 'ccadmin/src/index.html'),'utf8' , function(error, data){
                  fs.writeFile(path.join(__dirname, newMicroService+'/src/index.html'), data, function(){
@@ -89,6 +94,9 @@ var url = "https://muhammad_usman_rana:hackman123@bitbucket.org/expertflow-ondem
                    fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/scripts'),path.join(path.join(__dirname, newMicroService) , 'src/app/baseApp'))
                    fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/styles'),path.join(path.join(__dirname, newMicroService) , 'src/app/baseApp'))
                    console.log("\nDone with copying base");
+				   pb1.update(100);
+                     pb1.stop();
+                    clearInterval(timer);
                    pb1 = new progresBar();
                    timer1 = new timer(pb1);
                    fsE.remove('ccadmin', err => {
@@ -97,7 +105,21 @@ var url = "https://muhammad_usman_rana:hackman123@bitbucket.org/expertflow-ondem
                      pb1.stop();
                     clearInterval(timer);
                      console.log('\nDeleted base project!');
-                     return;
+					  console.log('\Resolving dependencies for gulp in new microService!');
+					  pb1 = new progresBar();
+                      timer1 = new timer(pb1);
+					 exec('cd newMicroService && npm install && bower install' , (error, stdout, stderr) =>{
+						 if(error){
+							  console.error(`\nError while Running npm install in newMicroService.. and error is : ${error}`);
+							  return;
+						 }
+						 pb1.update(100);
+                         pb1.stop();
+                         clearInterval(timer);
+						 return;
+					 });
+					 
+                    
                    })
                  });
                });
