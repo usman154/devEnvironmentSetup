@@ -53,7 +53,7 @@ var url = "https://muhammad_usman_rana:hackman123@bitbucket.org/expertflow-ondem
           timer1 = new timer(pb1);
       exec('cls && cd ccadmin && gulp serve:dist', (error, stdout, stderr)=>{
        if(error){
-         console.error(`Error while Running gulp serve:dist install, and error is : ${error}`);
+         console.error(`\nError while Running gulp serve:dist install, and error is : ${error}`);
        }
             console.log("\nApplication built and minified files have been placed in dist folder under ccadmin directory");
 
@@ -65,29 +65,30 @@ var url = "https://muhammad_usman_rana:hackman123@bitbucket.org/expertflow-ondem
              fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'gulp'),path.join(path.join(__dirname, newMicroService) , gulp))
              fs.readFile(path.join(__dirname, 'ccadmin/gulpfile.js'),'utf8' , function(error, data){
                fs.writeFile(path.join(__dirname, newMicroService+'/gulpfile.js'), data, function(){
-                 console.log("Done with gulpfile.js");
+                 console.log("\nDone with gulpfile.js");
                });
              });
              fs.readFile(path.join(__dirname, 'ccadmin/package.json'),'utf8' , function(error, data){
                fs.writeFile(path.join(__dirname, newMicroService+'/package.json'), data, function(){
-                 console.log("Done with Package.JSON file");
+                 console.log("\nDone with Package.JSON file");
                });
              });
              fs.mkdir(path.join(newMicroService,'src'), function(){
                fs.readFile(path.join(__dirname, 'ccadmin/src/index.html'),'utf8' , function(error, data){
                  fs.writeFile(path.join(__dirname, newMicroService+'/src/index.html'), data, function(){
-                   console.log("Created index.html file");
+                   console.log("\nCreated index.html file");
                  });
                });
                fs.mkdir(path.join(path.join(newMicroService,'src'),'app'), function(){
                  fs.readFile(path.join(__dirname, 'ccadmin/src/app/index.scss'),'utf8' , function(error, data){
                    fs.writeFile(path.join(__dirname, newMicroService+'/src/app/index.scss'), data, function(){
-                     console.log("Created index.scss file");
+                     console.log("\nCreated index.scss file");
                    });
                  });
                  fs.mkdir(path.join(path.join(path.join(newMicroService,'src'),'app'), 'baseApp'), function(){
-                   fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist'),path.join(path.join(__dirname, newMicroService) , 'src/app/baseApp'))
-                   console.log("Done with copying base");
+                   fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/scripts'),path.join(path.join(__dirname, newMicroService) , 'src/app/baseApp'))
+                   fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/styles'),path.join(path.join(__dirname, newMicroService) , 'src/app/baseApp'))
+                   console.log("\nDone with copying base");
                    pb1 = new progresBar();
                    timer1 = new timer(pb1);
                    fsE.remove('ccadmin', err => {
@@ -95,7 +96,7 @@ var url = "https://muhammad_usman_rana:hackman123@bitbucket.org/expertflow-ondem
                      pb1.update(100);
                      pb1.stop();
                     clearInterval(timer);
-                     console.log('Deleted base project!');
+                     console.log('\nDeleted base project!');
                      return;
                    })
                  });
