@@ -30,6 +30,7 @@ var url = "https://muhammad_usman_rana:hackman123@bitbucket.org/expertflow-ondem
      exec('cls && cd ccadmin && npm install' , (error, stdout, stderr)=>{
        if (error) {
          console.error(`\nError while Running npm install, and error is : ${error}`);
+		 
          return;
        }
         pb1.update(100);
@@ -42,6 +43,7 @@ var url = "https://muhammad_usman_rana:hackman123@bitbucket.org/expertflow-ondem
        exec('cls && cd ccadmin && bower install' , (error, stdout, stderr)=>{
          if (error) {
            console.error(`\nError while Running bower install, and error is : ${error}`);
+		    
            return;
          }
           pb1.update(100);
@@ -54,6 +56,7 @@ var url = "https://muhammad_usman_rana:hackman123@bitbucket.org/expertflow-ondem
       exec('cls && cd ccadmin && gulp serve:dist', (error, stdout, stderr)=>{
        if(error){
          console.error(`\nError while Running gulp serve:dist install, and error is : ${error}`);
+		 
        }
             console.log("\nApplication built and minified files have been placed in dist folder under ccadmin directory");
 
@@ -93,9 +96,14 @@ var url = "https://muhammad_usman_rana:hackman123@bitbucket.org/expertflow-ondem
                  fs.mkdir(path.join(path.join(path.join(newMicroService,'src'),'app'), 'baseApp'), function(){
                    fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/scripts'),path.join(path.join(__dirname, newMicroService) , 'src/app/baseApp'))
                    fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/styles'),path.join(path.join(__dirname, newMicroService) , 'src/app/baseApp'))
-				   fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/conf'),path.join(path.join(__dirname, newMicroService) , 'src/app'))
-				   fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/translations'),path.join(path.join(__dirname, newMicroService) , 'src/app'))
-				   fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/assets1'),path.join(path.join(__dirname, newMicroService) , 'src/app'))
+				   var baseThings = ['conf', 'translations', 'assets1'];
+				   for(var i=0; i<baseThings.length; i++){
+					   var folder = baseThings[i]
+					  fs.mkdir(path.join(path.join(newMicroService,'src'),folder), function(){
+						  fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/'+folder),path.join(path.join(__dirname, newMicroService) , 'src/'+folder));
+					  });
+				   }
+				  
                    console.log("\nDone with copying base");
 				   pb1.update(100);
                      pb1.stop();
@@ -119,11 +127,12 @@ var url = "https://muhammad_usman_rana:hackman123@bitbucket.org/expertflow-ondem
 						 pb1.update(100);
                          pb1.stop();
                          clearInterval(timer);
+						  console.log(`\nDone with everything. You can start developing your app now.`)
 						 return;
 					 });
 					 
                     
-                   })
+                   });
                  });
                });
              });
@@ -137,7 +146,7 @@ var url = "https://muhammad_usman_rana:hackman123@bitbucket.org/expertflow-ondem
        });
      });
 
-
+return;
      });
 
 
