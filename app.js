@@ -96,13 +96,13 @@ var url = "https://muhammad_usman_rana:hackman123@bitbucket.org/expertflow-ondem
                  fs.mkdir(path.join(path.join(path.join(newMicroService,'src'),'app'), 'baseApp'), function(){
                    fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/scripts'),path.join(path.join(__dirname, newMicroService) , 'src/app/baseApp'))
                    fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/styles'),path.join(path.join(__dirname, newMicroService) , 'src/app/baseApp'))
-				   var baseThings = ['conf', 'translations', 'assets1'];
+                      var baseThings = [ 'translations', 'assets1','conf'];
 				   for(var i=0; i<baseThings.length; i++){
-					   var folder = baseThings[i]
-					  fs.mkdir(path.join(path.join(newMicroService,'src'),folder), function(){
+					   var folder = baseThings[i];
+					  fs.mkdirSync(path.join(path.join(newMicroService,'src'),folder))
 						  fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/'+folder),path.join(path.join(__dirname, newMicroService) , 'src/'+folder));
-					  });
-				   }
+					  }
+
 				  
                    console.log("\nDone with copying base");
 				   pb1.update(100);
