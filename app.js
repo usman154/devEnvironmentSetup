@@ -94,8 +94,9 @@ var url = "https://muhammad_usman_rana:hackman123@bitbucket.org/expertflow-ondem
                    });
                  });
                  fs.mkdir(path.join(path.join(path.join(newMicroService,'src'),'app'), 'baseApp'), function(){
-                   fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/scripts'),path.join(path.join(__dirname, newMicroService) , 'src/app/baseApp'))
-                   fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/styles'),path.join(path.join(__dirname, newMicroService) , 'src/app/baseApp'))
+                   fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/scripts'),path.join(path.join(__dirname, newMicroService) , 'src/app/baseApp'));
+                   fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/styles'),path.join(path.join(__dirname, newMicroService) , 'src/app/baseApp'));
+				   fsE.copySync(path.join(path.join(__dirname, 'ccadmin'), 'dist/assets1'),path.join(path.join(__dirname, newMicroService) , 'src/app'));
                       var baseThings = [ 'translations', 'assets1','conf'];
 				   for(var i=0; i<baseThings.length; i++){
 					   var folder = baseThings[i];
