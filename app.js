@@ -8,7 +8,14 @@ const fsE = require('fs-extra')
 var gitClone = "git clone";
 var newMicroService = 'newMicroService';
 var gulp = 'gulp';
-var url = "https://muhammad_usman_rana:hackman123@bitbucket.org/expertflow-ondemand/ccadmin.git";
+var userName = process.argv[2];
+if(!userName){
+	console.log("User name is required.")
+	return;
+}
+var pwd = process.argv[3];
+
+var url = "https://"+userName+":"+pwd+"@bitbucket.org/expertflow-ondemand/ccadmin.git";
 
 
    console.log("Cloning repository..");
